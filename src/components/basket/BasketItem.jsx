@@ -21,14 +21,14 @@ const BasketItem = ({
         </PriceAndAmountContainer>
         <CounterContainer>
           <StyledIconsButton
-            borderstyle="squared"
+            borderStyle="squared"
             variant="outlined"
             onClick={decrementAmount}
           >
             <RemoveIcon />
           </StyledIconsButton>
           <StyledIconsButton
-            borderstyle="squared"
+            borderStyle="squared"
             variant="outlined"
             onClick={incrementAmount}
           >

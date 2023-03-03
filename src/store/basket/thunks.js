@@ -4,6 +4,7 @@ import {
   getBasketRequest,
   postBasketRequest,
   putBasketRequest,
+  submitRequest,
 } from '../../axios-api/mealsService'
 
 export const getBasket = createAsyncThunk(
@@ -61,10 +62,7 @@ export const submitOrder = createAsyncThunk(
   'basket/submitOrder',
   async ({ orderData }, { dispatch, rejectWithValue }) => {
     try {
-      await fetch(`https://jsonplaceholder.typicode.com/posts`, {
-        method: 'POST',
-        body: orderData,
-      })
+      await submitRequest(orderData)
       return dispatch(getBasket())
     } catch (error) {
       return rejectWithValue('something went wrong submitorder')

@@ -17,3 +17,10 @@ export const postBasketRequest = (newItem) => {
 export const getMealsRequest = () => {
   return axiosInstance.get('/foods')
 }
+
+export const submitRequest = (orderData) => {
+  return axiosInstance.post(
+    `https://jsonplaceholder.typicode.com/posts`,
+    orderData
+  )
+}

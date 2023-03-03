@@ -5,12 +5,12 @@ import React from 'react'
 const ButtonMui = ({
   children,
   variant = 'contained',
-  borderstyle = 'rounded',
+  borderStyle = 'rounded',
   ...rest
 }) => {
   return (
     <div>
-      <StyledButton variant={variant} borderstyle={borderstyle} {...rest}>
+      <StyledButton variant={variant} borderStyle={borderStyle} {...rest}>
         {children}
       </StyledButton>
     </div>
@@ -27,22 +27,22 @@ const getBorder = (variant) => {
   return variant === 'contained' ? 'none' : '1px solid #8a2b06'
 }
 
-const getBorderRadius = (borderstyle) => {
-  return borderstyle === 'rounded' ? '20px' : '6px'
+const getBorderRadius = (borderStyle) => {
+  return borderStyle === 'rounded' ? '20px' : '6px'
 }
 
-const getPadding = (borderstyle) => {
-  return borderstyle === 'rounded' ? '10px 32px' : '8px 14px'
+const getPadding = (borderStyle) => {
+  return borderStyle === 'rounded' ? '10px 32px' : '8px 14px'
 }
 
-const StyledButton = styled(Button)(({ variant, borderstyle }) => ({
+const StyledButton = styled(Button)(({ variant, borderStyle }) => ({
   '&': {
     display: 'flex',
     alignItems: 'center',
     gap: '0.3125rem',
     background: getBackgroundColor(variant),
-    borderRadius: getBorderRadius(borderstyle),
-    padding: getPadding(borderstyle),
+    borderRadius: getBorderRadius(borderStyle),
+    padding: getPadding(borderStyle),
     fontWeight: '600',
     lineHeight: '1.5rem',
     border: getBorder(variant),
