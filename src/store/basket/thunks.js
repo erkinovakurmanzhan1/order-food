@@ -9,9 +9,10 @@ import {
 
 export const getBasket = createAsyncThunk(
   'basket/getBasket',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const { data } = await getBasketRequest()
+      const { token } = getState().auth
+      const { data } = await getBasketRequest(token)
       return data.data.items
     } catch (error) {
       return rejectWithValue('something went wrong getBasket ')

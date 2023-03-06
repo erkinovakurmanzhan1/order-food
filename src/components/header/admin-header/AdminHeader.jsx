@@ -10,6 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
+import { useDispatch } from 'react-redux'
+import { signOut } from '../../../store/auth/thunks'
 
 const menus = [
   {
@@ -23,6 +25,11 @@ const menus = [
 ]
 
 const AdminHeader = () => {
+  const dispatch = useDispatch()
+
+  const signOutNavigateHandler = () => {
+    dispatch(signOut())
+  }
   return (
     <AppBar position="static">
       <Toolbar>
@@ -48,7 +55,9 @@ const AdminHeader = () => {
             </NavLink>
           ))}
 
-          <Button color="inherit">Sign Out</Button>
+          <Button color="inherit" onClick={signOutNavigateHandler}>
+            Sign Out
+          </Button>
         </Container>
       </Toolbar>
     </AppBar>

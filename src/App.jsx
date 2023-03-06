@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import SnackBarModal from './components/UI/SnackBar'
 import { darkTheme, lightTheme } from './lib/constants/theme'
 import AppRoutes from './routes/Routes'
-import { store } from './store'
+import { store } from './store/store'
 import { uiSLiceActions } from './store/ui/ui.slice'
 
 function AppContent() {
