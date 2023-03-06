@@ -35,7 +35,9 @@ const getPadding = (borderStyle) => {
   return borderStyle === 'rounded' ? '10px 32px' : '8px 14px'
 }
 
-const StyledButton = styled(Button)(({ variant, borderStyle }) => ({
+const StyledButton = styled(Button, {
+  shouldForwardProp: (propName) => propName !== 'borderStyle',
+})(({ variant, borderStyle }) => ({
   '&': {
     display: 'flex',
     alignItems: 'center',

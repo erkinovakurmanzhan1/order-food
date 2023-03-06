@@ -25,7 +25,7 @@ export const addToBasket = createAsyncThunk(
     try {
       const { data } = await postBasketRequest(newItem)
       dispatch(getBasket())
-      return data.items
+      return data.data.items
     } catch (error) {
       return rejectWithValue('something went wrong basket')
     }

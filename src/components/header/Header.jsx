@@ -2,7 +2,9 @@ import { AppBar } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import styledComponent from 'styled-components'
+import { signOut } from '../../store/auth/thunks'
 import { getBasket } from '../../store/basket/thunks'
 import { uiSLiceActions } from '../../store/ui/ui.slice'
 import ButtonMui from '../UI/ButtonMui'
@@ -10,7 +12,8 @@ import BasketButton from './BasketButton'
 
 function Header({ onShowBasket }) {
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized)
   const { items } = useSelector((state) => state.basket)
 
   const themeMode = useSelector((state) => state.ui.themeMode)
@@ -42,9 +45,18 @@ function Header({ onShowBasket }) {
     dispatch(uiSLiceActions.changeTheme(theme))
   }
 
+  const signInNavigateChangeHandler = () => {
+    navigate('/signin')
+  }
+  const signOutNavigateHandler = () => {
+    dispatch(signOut())
+    navigate('/signin')
+  }
   return (
     <Container>
-      <Logo>ReactMeals</Logo>
+      <Link to="/">
+        <Logo>ReactMeals</Logo>
+      </Link>
       <BasketButton
         className={animationClass}
         onClick={onShowBasket}
@@ -53,6 +65,15 @@ function Header({ onShowBasket }) {
       <ThemeBtnStyled onClick={themeChangeHandler}>
         {themeMode === 'light' ? '🌙 ' : ' ☀️'}
       </ThemeBtnStyled>
+      {isAuthorized ? (
+        <SignInBtnStyled onClick={signOutNavigateHandler}>
+          Sign Out
+        </SignInBtnStyled>
+      ) : (
+        <SignInBtnStyled onClick={signInNavigateChangeHandler}>
+          Sign In
+        </SignInBtnStyled>
+      )}
     </Container>
   )
 }
@@ -89,3 +110,11 @@ const Logo = styledComponent.p`
   color: #ffffff;
   margin: 0;
 `
+const SignInBtnStyled = styled(ButtonMui)(({ theme }) => ({
+  '&': {
+    border: `1px solid${theme.palette.primary.dark}`,
+    background: theme.palette.primary.dark,
+    color: theme.palette.primary.contrastText,
+    marginLeft: '10rem',
+  },
+}))

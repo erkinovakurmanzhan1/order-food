@@ -28,7 +28,7 @@ const Basket = ({ onClose }) => {
     dispatch(updateBasketItem({ amount: amount + 1, id }))
   }
   const getTotalPrice = useCallback(() => {
-    return items.reduce((sum, { price, amount }) => sum + amount * price, 0)
+    // return items.reduce((sum, { price, amount }) => sum + amount * price, 0)
   }, [items])
 
   const orderSubmitHandler = async () => {
