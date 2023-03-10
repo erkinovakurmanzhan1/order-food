@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import authService from '../../axios-api/authService'
-import { createMealReq } from '../../axios-api/mealsService'
 import { STORAGE_KEYS } from '../../lib/constants/common'
 
 export const signUp = createAsyncThunk(
@@ -35,10 +34,6 @@ export const signIn = createAsyncThunk(
   }
 )
 
-export const signOut = createAsyncThunk(
-  'auth/signout',
-  async (data, { getState }) => {
-    mealService.createMealReq(data, getState().auth.token)
-    return localStorage.removeItem(STORAGE_KEYS.AUTH)
-  }
-)
+export const signOut = createAsyncThunk('auth/signout', async () => {
+  return localStorage.removeItem(STORAGE_KEYS.AUTH)
+})

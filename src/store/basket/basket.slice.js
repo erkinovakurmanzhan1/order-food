@@ -5,7 +5,7 @@ import {
   deleteBasketItem,
   getBasket,
   updateBasketItem,
-} from './thunks'
+} from './basket.thunks'
 
 const initialState = {
   items: [],

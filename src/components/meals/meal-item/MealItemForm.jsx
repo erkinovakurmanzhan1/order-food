@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux'
 import { TextField } from '@mui/material'
 import { styled } from '@mui/system'
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone'
-import ButtonMui from '../../UI/ButtonMui'
-import { addToBasket } from '../../../store/basket/thunks'
+import ButtonMui from '../../ui/ButtonMui'
+import { addToBasket } from '../../../store/basket/basket.thunks'
 
 const MealItemForm = ({ id, title, price }) => {
   const dispatch = useDispatch()

@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styledComponent from 'styled-components'
-import { signOut } from '../../store/auth/thunks'
-import { getBasket } from '../../store/basket/thunks'
+import { signOut } from '../../store/auth/auth.thunks'
+import { getBasket } from '../../store/basket/basket.thunks'
 import { uiSLiceActions } from '../../store/ui/ui.slice'
-import ButtonMui from '../UI/ButtonMui'
+import ButtonMui from '../ui/ButtonMui'
 import BasketButton from './BasketButton'
 
 function Header({ onShowBasket }) {
@@ -15,7 +15,6 @@ function Header({ onShowBasket }) {
   const navigate = useNavigate()
   const isAuthorized = useSelector((state) => state.auth.isAuthorized)
   const { items } = useSelector((state) => state.basket)
-
   const themeMode = useSelector((state) => state.ui.themeMode)
   const [animationClass, setAnimationClass] = useState('')
 
@@ -50,7 +49,6 @@ function Header({ onShowBasket }) {
   }
   const signOutNavigateHandler = () => {
     dispatch(signOut())
-    navigate('/signin')
   }
   return (
     <Container>

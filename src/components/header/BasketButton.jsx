@@ -2,7 +2,7 @@ import React from 'react'
 import styledComponent from 'styled-components'
 import AddShoppingCartTwoToneIcon from '@mui/icons-material/AddShoppingCartTwoTone'
 import { styled } from '@mui/material/styles'
-import ButtonMui from '../UI/ButtonMui'
+import ButtonMui from '../ui/ButtonMui'
 
 const BasketButton = ({ count, ...rest }) => {
   return (

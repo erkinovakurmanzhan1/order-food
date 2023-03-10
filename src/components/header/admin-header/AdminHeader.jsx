@@ -11,7 +11,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
-import { signOut } from '../../../store/auth/thunks'
+import { signOut } from '../../../store/auth/auth.thunks'
 
 const menus = [
   {

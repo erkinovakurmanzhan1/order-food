@@ -7,7 +7,7 @@ import {
   deleteBasketItem,
   submitOrder,
   updateBasketItem,
-} from '../../store/basket/thunks'
+} from '../../store/basket/basket.thunks'
 import { uiSLiceActions } from '../../store/ui/ui.slice'
 import BasketItem from './BasketItem'
 import TotalAmount from './TotalAmount'
@@ -17,7 +17,7 @@ const Basket = ({ onClose }) => {
   const dispatch = useDispatch()
 
   const decrementAmount = (id, amount) => {
-    if (amount > 0) {
+    if (amount > 1) {
       dispatch(updateBasketItem({ amount: amount - 1, id }))
     } else {
       dispatch(deleteBasketItem(id))
@@ -28,7 +28,7 @@ const Basket = ({ onClose }) => {
     dispatch(updateBasketItem({ amount: amount + 1, id }))
   }
   const getTotalPrice = useCallback(() => {
-    // return items.reduce((sum, { price, amount }) => sum + amount * price, 0)
+    return items.reduce((sum, { price, amount }) => sum + amount * price, 0)
   }, [items])
 
   const orderSubmitHandler = async () => {

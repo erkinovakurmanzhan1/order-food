@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { store } from '../store/store'
 
 const BASE_URL =
   'http://ec2-3-122-253-30.eu-central-1.compute.amazonaws.com:5500/api/v1'
@@ -7,6 +6,10 @@ const BASE_URL =
 // const headers = {
 //   // UserID: 'kurmanzhan',
 //   // 'Content-Type': 'application/json',
+//   Authorization: store.getState().auth.token,
+// }
+
+// const headers = {
 //   Authorization: store.getState().auth.token,
 // }
 

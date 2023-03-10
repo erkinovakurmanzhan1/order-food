@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles'
 import React from 'react'
 import styledComponent from 'styled-components'
-import ButtonMui from '../UI/ButtonMui'
+import ButtonMui from '../ui/ButtonMui'
 
 const TotalAmount = ({ price, onClose, onOrder }) => {
   const orderButton = price > 0 && (

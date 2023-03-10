@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styledComponent from 'styled-components'
-import ButtonMui from '../../components/UI/ButtonMui'
+import ButtonMui from '../../components/ui/ButtonMui'
 import { UserRoles } from '../../lib/constants/common'
-import { signUp } from '../../store/auth/thunks'
+import { signUp } from '../../store/auth/auth.thunks'
 
 const SignUp = () => {
   const navigate = useNavigate()

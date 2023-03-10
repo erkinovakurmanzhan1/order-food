@@ -11,7 +11,7 @@ export const lightTheme = {
     secondary: {
       main: '#5c5957',
       light: '#ffe1e1',
-      dark: '#48085',
+      dark: '#fff',
       constrastText: '#FFFF',
     },
     error: {
@@ -31,7 +31,6 @@ export const lightTheme = {
     fontFamily: 'Roboto',
     fontSize: 14,
   },
-  // spacing: {},
 }
 
 export const darkTheme = {
@@ -65,7 +64,6 @@ export const darkTheme = {
     fontFamily: 'Roboto',
     fontSize: 14,
   },
-  // spacing: {},
 }
 
 export const getTheme = () => {

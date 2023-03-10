@@ -6,7 +6,7 @@ import UserLayout from '../layout/UserLayout'
 import { UserRoles } from '../lib/constants/common'
 import Meals from '../pages/admin/Meals.page'
 import Orders from '../pages/admin/Orders.page'
-import NotFoundPage from '../pages/NotFounPage'
+import NotFoundPage from '../pages/NotFoundPage'
 import MealsPage from '../pages/user/MealsPage'
 import SignIn from '../pages/user/SignIn'
 import SignUp from '../pages/user/SignUp'
@@ -16,7 +16,7 @@ const AppRoutes = () => {
   const role = useSelector((state) => state.auth.user.role)
 
   const isAllowed = (roles) => {
-    return role.includes(roles)
+    return roles.includes(role)
   }
 
   return (
@@ -45,7 +45,7 @@ const AppRoutes = () => {
           path="signup"
           element={
             <ProtectectedRoute
-              isAllowed={isAllowed([UserRoles.GUEST])}
+              isAllowed={isAllowed([UserRoles.GUEST, UserRoles.USER])}
               fallBackPath={role === UserRoles.ADMIN ? '/admin/meals' : '/'}
               component={SignUp}
             />
@@ -55,7 +55,7 @@ const AppRoutes = () => {
           path="signin"
           element={
             <ProtectectedRoute
-              isAllowed={isAllowed([UserRoles.GUEST])}
+              isAllowed={isAllowed([UserRoles.GUEST, UserRoles.USER])}
               fallBackPath={role === UserRoles.ADMIN ? '/admin/meals' : '/'}
               component={SignIn}
             />

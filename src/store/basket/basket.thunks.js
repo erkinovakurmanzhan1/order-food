@@ -5,7 +5,7 @@ import {
   postBasketRequest,
   putBasketRequest,
   submitRequest,
-} from '../../axios-api/mealsService'
+} from '../../axios-api/basketService'
 
 export const getBasket = createAsyncThunk(
   'basket/getBasket',
@@ -22,9 +22,10 @@ export const getBasket = createAsyncThunk(
 
 export const addToBasket = createAsyncThunk(
   'basket/addToBasket',
-  async (newItem, { dispatch, rejectWithValue }) => {
+  async (newItem, { dispatch, rejectWithValue, getState }) => {
     try {
-      const { data } = await postBasketRequest(newItem)
+      const { token } = getState().auth
+      const { data } = await postBasketRequest(newItem, token)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {
@@ -35,9 +36,10 @@ export const addToBasket = createAsyncThunk(
 
 export const deleteBasketItem = createAsyncThunk(
   'basket/deleteBasket',
-  async (id, { dispatch, rejectWithValue }) => {
+  async (id, { dispatch, rejectWithValue, getState }) => {
     try {
-      const { data } = await deleteBasketRequest(id)
+      const { token } = getState().auth
+      const { data } = await deleteBasketRequest(id, token)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {
@@ -48,9 +50,10 @@ export const deleteBasketItem = createAsyncThunk(
 
 export const updateBasketItem = createAsyncThunk(
   'basket/updateBasket',
-  async ({ id, amount }, { dispatch, rejectWithValue }) => {
+  async ({ id, amount }, { dispatch, rejectWithValue, getState }) => {
     try {
-      const { data } = await putBasketRequest(id, amount)
+      const { token } = getState().auth
+      const { data } = await putBasketRequest(id, amount, token)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {

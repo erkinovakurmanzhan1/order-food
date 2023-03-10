@@ -2,7 +2,7 @@ import styledComponent from 'styled-components'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import styled from '@emotion/styled'
-import ButtonMui from '../UI/ButtonMui'
+import ButtonMui from '../ui/ButtonMui'
 
 const BasketItem = ({
   title,
@@ -46,7 +46,6 @@ const StyledIconsButton = styled(ButtonMui)(({ theme }) => ({
   '&': {
     border: `1px solid${theme.palette.primary.dark}`,
     background: 'none',
-
     color: theme.palette.primary.dark,
   },
   '&:hover': {

@@ -6,4 +6,5 @@ export const UserRoles = {
 
 export const STORAGE_KEYS = {
   AUTH: 'AUTH',
+  MEALS: 'MEALS',
 }

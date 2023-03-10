@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import getMeals from './thunks'
+import { getMeals } from './meals.thunks'
 
 const initialState = {
   meals: [],
@@ -23,6 +23,19 @@ export const mealsSlice = createSlice({
       state.isLoading = false
       state.error = action.payload
     })
+
+    //
+    // builder.addCase(postMeals.fulfilled, (state, action) => {
+    //   state.meals = action.payload
+    // })
+    // builder.addCase(postMeals.pending, (state) => {
+    //   state.isLoading = true
+    // })
+    // builder.addCase(postMeals.rejected, (state, action) => {
+    //   state.isLoading = false
+    //   state.error = action.payload
+    // })
+    //
   },
 })
 

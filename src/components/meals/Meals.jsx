@@ -4,7 +4,7 @@ import { styled } from '@mui/system'
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styledComponent from 'styled-components'
-import getMeals from '../../store/meals/thunks'
+import { getMeals } from '../../store/meals/meals.thunks'
 import MealItem from './meal-item/MealItem'
 
 const Meals = () => {
