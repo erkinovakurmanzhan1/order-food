@@ -6,7 +6,6 @@ import Header from '../components/header/Header'
 
 const UserLayout = () => {
   const [isBasketVisible, setBasketVisisble] = useState(false)
-
   const showBasketHandler = useCallback(() => {
     setBasketVisisble((prevState) => !prevState)
   }, [])
@@ -15,7 +14,6 @@ const UserLayout = () => {
     <div>
       <Header onShowBasket={showBasketHandler} />
       {isBasketVisible && <Basket onClose={showBasketHandler} />}
-
       <Content>
         <Outlet />
       </Content>

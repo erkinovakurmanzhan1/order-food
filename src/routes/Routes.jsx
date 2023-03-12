@@ -6,10 +6,11 @@ import UserLayout from '../layout/UserLayout'
 import { UserRoles } from '../lib/constants/common'
 import Meals from '../pages/admin/Meals.page'
 import Orders from '../pages/admin/Orders.page'
-import NotFoundPage from '../pages/NotFoundPage'
+import NotFoundPage from '../pages/guest/NotFoundPage'
+import SignIn from '../pages/guest/SignIn'
+import SignUp from '../pages/guest/SignUp'
 import MealsPage from '../pages/user/MealsPage'
-import SignIn from '../pages/user/SignIn'
-import SignUp from '../pages/user/SignUp'
+import UserOrdersPage from '../pages/user/UserOrdersPage'
 import { ProtectectedRoute } from './ProtectedRoute'
 
 const AppRoutes = () => {
@@ -94,6 +95,7 @@ const AppRoutes = () => {
         />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
+      <Route path="/userOrders" element={<UserOrdersPage />} />
     </Routes>
   )
 }

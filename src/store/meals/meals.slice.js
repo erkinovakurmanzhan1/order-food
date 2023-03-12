@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/no-cycle
 import { getMeals } from './meals.thunks'
 
 const initialState = {

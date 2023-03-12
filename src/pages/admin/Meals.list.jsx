@@ -35,7 +35,9 @@ const MealsList = ({ meal, mealName, price, description }) => {
       description: saveNewDescription,
       id,
     }
+
     dispatch(editMeals(editMeal))
+
     setEdit(false)
   }
 

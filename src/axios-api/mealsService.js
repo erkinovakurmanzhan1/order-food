@@ -1,25 +1,20 @@
+// eslint-disable-next-line import/no-cycle
 import { axiosInstance } from '../config/axiosInstance'
 
-export const getMealsRequest = (token) => {
-  return axiosInstance.get('/foods', { headers: { Authorization: token } })
+export const getMealsRequest = () => {
+  return axiosInstance.get('/foods')
 }
 
-export const createMealRequest = (data, token) => {
-  return axiosInstance.post(`/foods`, data, {
-    headers: { Authorization: token },
-  })
+export const createMealRequest = (data) => {
+  return axiosInstance.post(`/foods`, data)
 }
 
-export const deleteMealsRequest = (id, token) => {
-  return axiosInstance.delete(`/foods/${id}`, {
-    headers: { Authorization: token },
-  })
+export const deleteMealsRequest = (id) => {
+  return axiosInstance.delete(`/foods/${id}`)
 }
 
-export const updateMealsRequest = (editMeal, token) => {
-  return axiosInstance.put(`/foods/${editMeal.id}`, editMeal, {
-    headers: { Authorization: token },
-  })
+export const updateMealsRequest = (editMeal) => {
+  return axiosInstance.put(`/foods/${editMeal.id}`, editMeal)
 }
 
 // export const

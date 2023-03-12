@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/no-cycle
 import {
   createMealRequest,
   deleteMealsRequest,
@@ -8,11 +9,9 @@ import {
 
 export const getMeals = createAsyncThunk(
   'meals/getMeals',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { token } = getState().auth
-
-      const { data } = await getMealsRequest(token)
+      const { data } = await getMealsRequest()
       return data.data
     } catch (error) {
       return rejectWithValue('Something went wrong  getMeals')
@@ -21,10 +20,9 @@ export const getMeals = createAsyncThunk(
 )
 export const postMeals = createAsyncThunk(
   'meals/postMeals',
-  async (payload, { rejectWithValue, getState, dispatch }) => {
+  async (payload, { rejectWithValue, dispatch }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await createMealRequest(payload, token)
+      const { data } = await createMealRequest(payload)
       dispatch(getMeals())
       return data.data
     } catch (error) {
@@ -35,10 +33,9 @@ export const postMeals = createAsyncThunk(
 
 export const deleteMeals = createAsyncThunk(
   'meals/deleteMeals',
-  async (id, { rejectWithValue, getState, dispatch }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
-      const { token } = getState().auth
-      await deleteMealsRequest(id, token)
+      await deleteMealsRequest(id)
       return dispatch(getMeals())
     } catch (error) {
       return rejectWithValue('Something went wrong  deleteMeals')
@@ -47,11 +44,10 @@ export const deleteMeals = createAsyncThunk(
 )
 
 export const editMeals = createAsyncThunk(
-  'meals/deleteMeals',
-  async (editMeal, { rejectWithValue, getState, dispatch }) => {
+  'meals/updateeMeals',
+  async (editMeal, { rejectWithValue, dispatch }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await updateMealsRequest(editMeal, token)
+      const { data } = await updateMealsRequest(editMeal)
       dispatch(getMeals())
       return data.data
     } catch (error) {

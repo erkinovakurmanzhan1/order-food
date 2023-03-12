@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { STORAGE_KEYS, UserRoles } from '../../lib/constants/common'
+// eslint-disable-next-line import/no-cycle
 import { signIn, signOut, signUp } from './auth.thunks'
 
 const getInitialState = () => {
@@ -24,7 +25,7 @@ const getInitialState = () => {
     user: {
       email: '',
       name: '',
-      role: UserRoles.GUEST,
+      role: UserRoles.USER,
     },
   }
 }

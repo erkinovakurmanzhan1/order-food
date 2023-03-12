@@ -8,7 +8,7 @@ const MealItem = ({ meal }) => {
       <Container>
         <StyledItemInfo>
           <StyledTitle>{meal.title}</StyledTitle>
-          <p>{meal.description}</p>
+          <Description>{meal.description}</Description>
           <StyledPrice>${meal.price}</StyledPrice>
         </StyledItemInfo>
         <div>
@@ -35,6 +35,9 @@ const Container = styledComponent.li`
   }
 `
 const StyledItemInfo = styledComponent.div`
+  display:flex;
+  flex-direction:column;
+  gap:10px;
   margin-bottom: 20px;
   p {
     font-style: italic;
@@ -66,3 +69,7 @@ const StyledPrice = styledComponent.span`
 `
 
 const StyledInput = styledComponent.div``
+
+const Description = styledComponent.p`
+  width: 400px;
+`

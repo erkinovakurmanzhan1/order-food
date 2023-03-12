@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 // import { ReactComponent as PlusIcon } from "../../../assets/icons/plus.svg";
 import styledComponent from 'styled-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { TextField } from '@mui/material'
 import { styled } from '@mui/system'
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone'
 import ButtonMui from '../../ui/ButtonMui'
 import { addToBasket } from '../../../store/basket/basket.thunks'
+import { withAuthModal } from '../../hoc/withAuthModal'
 
-const MealItemForm = ({ id, title, price }) => {
+const MealItemForm = ({ id, title, price, showAuthModal }) => {
   const dispatch = useDispatch()
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized)
   const [amount, setAmount] = useState(1)
 
   const amountChangeHandler = (event) => {
@@ -19,6 +21,9 @@ const MealItemForm = ({ id, title, price }) => {
   const submitHandler = (event) => {
     event.preventDefault()
 
+    if (!isAuthorized) {
+      showAuthModal()
+    }
     const basketItem = {
       id,
       price,
@@ -50,7 +55,7 @@ const MealItemForm = ({ id, title, price }) => {
   )
 }
 
-export default MealItemForm
+export default withAuthModal(MealItemForm)
 
 const StyledAddButton = styled(ButtonMui)(({ theme }) => ({
   '&': {

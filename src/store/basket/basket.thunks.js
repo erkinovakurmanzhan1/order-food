@@ -1,18 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/no-cycle
 import {
   deleteBasketRequest,
   getBasketRequest,
   postBasketRequest,
   putBasketRequest,
-  submitRequest,
 } from '../../axios-api/basketService'
 
 export const getBasket = createAsyncThunk(
   'basket/getBasket',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await getBasketRequest(token)
+      const { data } = await getBasketRequest()
       return data.data.items
     } catch (error) {
       return rejectWithValue('something went wrong getBasket ')
@@ -22,10 +21,9 @@ export const getBasket = createAsyncThunk(
 
 export const addToBasket = createAsyncThunk(
   'basket/addToBasket',
-  async (newItem, { dispatch, rejectWithValue, getState }) => {
+  async (newItem, { dispatch, rejectWithValue }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await postBasketRequest(newItem, token)
+      const { data } = await postBasketRequest(newItem)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {
@@ -36,10 +34,9 @@ export const addToBasket = createAsyncThunk(
 
 export const deleteBasketItem = createAsyncThunk(
   'basket/deleteBasket',
-  async (id, { dispatch, rejectWithValue, getState }) => {
+  async (id, { dispatch, rejectWithValue }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await deleteBasketRequest(id, token)
+      const { data } = await deleteBasketRequest(id)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {
@@ -50,26 +47,13 @@ export const deleteBasketItem = createAsyncThunk(
 
 export const updateBasketItem = createAsyncThunk(
   'basket/updateBasket',
-  async ({ id, amount }, { dispatch, rejectWithValue, getState }) => {
+  async ({ id, amount }, { dispatch, rejectWithValue }) => {
     try {
-      const { token } = getState().auth
-      const { data } = await putBasketRequest(id, amount, token)
+      const { data } = await putBasketRequest(id, amount)
       dispatch(getBasket())
       return data.data.items
     } catch (error) {
       return rejectWithValue('something went wrong update')
-    }
-  }
-)
-
-export const submitOrder = createAsyncThunk(
-  'basket/submitOrder',
-  async ({ orderData }, { dispatch, rejectWithValue }) => {
-    try {
-      await submitRequest(orderData)
-      return dispatch(getBasket())
-    } catch (error) {
-      return rejectWithValue('something went wrong submitorder')
     }
   }
 )

@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
+// eslint-disable-next-line import/no-cycle
 import {
   addToBasket,
   deleteBasketItem,

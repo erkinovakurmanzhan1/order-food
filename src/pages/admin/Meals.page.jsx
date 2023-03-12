@@ -46,6 +46,9 @@ const Meals = () => {
       price,
     }
     dispatch(postMeals(meal))
+    setMeals('')
+    setDescription('')
+    setPrice()
     setParams(false)
   }
   return (

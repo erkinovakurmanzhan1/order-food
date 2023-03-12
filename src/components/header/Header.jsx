@@ -7,10 +7,11 @@ import styledComponent from 'styled-components'
 import { signOut } from '../../store/auth/auth.thunks'
 import { getBasket } from '../../store/basket/basket.thunks'
 import { uiSLiceActions } from '../../store/ui/ui.slice'
+import { withAuthModal } from '../hoc/withAuthModal'
 import ButtonMui from '../ui/ButtonMui'
 import BasketButton from './BasketButton'
 
-function Header({ onShowBasket }) {
+function Header({ onShowBasket, showAuthModal }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isAuthorized = useSelector((state) => state.auth.isAuthorized)
@@ -50,6 +51,13 @@ function Header({ onShowBasket }) {
   const signOutNavigateHandler = () => {
     dispatch(signOut())
   }
+
+  const showBasketHandler = () => {
+    if (!isAuthorized) {
+      return showAuthModal()
+    }
+    return onShowBasket()
+  }
   return (
     <Container>
       <Link to="/">
@@ -57,12 +65,18 @@ function Header({ onShowBasket }) {
       </Link>
       <BasketButton
         className={animationClass}
-        onClick={onShowBasket}
+        onClick={showBasketHandler}
         count={calculateTotalAmount()}
       />
       <ThemeBtnStyled onClick={themeChangeHandler}>
         {themeMode === 'light' ? '🌙 ' : ' ☀️'}
       </ThemeBtnStyled>
+      {isAuthorized && (
+        <Link to="/userOrders">
+          <h2>My Orders</h2>
+        </Link>
+      )}
+
       {isAuthorized ? (
         <SignInBtnStyled onClick={signOutNavigateHandler}>
           Sign Out
@@ -76,7 +90,7 @@ function Header({ onShowBasket }) {
   )
 }
 
-export default Header
+export default withAuthModal(Header)
 
 const ThemeBtnStyled = styled(ButtonMui)(({ theme }) => ({
   '&': {
