@@ -96,25 +96,29 @@ padding-top:2rem;
 `
 
 const DescriptionStyle = styledComponent.li`
+width:60%;
 font-size:16px;
   font-weight:700;
-
 `
 
 const Container = styledComponent.div`
-padding:2rem;
+  width:80vw;
+  margin: 0 auto;
+  padding:2rem;
   display: flex;
   list-style: none;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(214, 214, 214, 1);
   background-color: #ffff;
-
   :last-child() {
     border: none;
   }
 `
 const ListContainer = styledComponent.div`
+display:flex;
+flex-direction:column;
+gap:10px;
   margin-bottom: 20px;
   p {
     font-style: italic;
